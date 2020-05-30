@@ -24,6 +24,39 @@ class library
     void search_book();
 };
 
+void library::search_book()
+{
+    int flag=0;
+    string name;
+    string line;
+    string file;
+    file="C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt";
+    ifstream search(file);
+    cout<<"Enter name of the book: ";
+    cin>>name;
+    while (getline(search,line))
+    {
+        if(line==name)
+        {
+            flag=1;
+            cout<<"Book name: "<<line<<endl;
+            getline(search,line);
+            cout<<"Author name: "<<line<<endl;
+            getline(search,line);
+            cout<<"Publisher name: "<<line<<endl;
+            getline(search,line);
+            cout<<"Book price: "<<line<<endl;
+            getline(search,line);
+            cout<<"Book quantity: "<<line<<endl;
+        }
+    }
+    if(flag==0)
+    {
+        cout<<"Book not found...";
+    }
+    
+}
+
 void library::view_booklist()
 {
     int no=1;
@@ -378,7 +411,7 @@ int main()
 {
     
   library ob;
-  ob.view_booklist();
+  ob.search_book();
   //ob.issue_book();
  // ob.modify_book();
 // ob.view_issuedbooks();
