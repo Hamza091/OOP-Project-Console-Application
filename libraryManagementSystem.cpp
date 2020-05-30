@@ -24,6 +24,31 @@ class library
     void search_book();
 };
 
+void library::view_booklist()
+{
+    int no=1;
+    string line;
+    string file;
+    file="C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt";
+    ifstream view(file);
+    while(getline(view,line))
+    {
+        cout<<"***** BOOK#"<<no<<" *****"<<endl;
+        cout<<"Book name: "<<line<<endl;
+        getline(view,line);
+        cout<<"Author name: "<<line<<endl;
+        getline(view,line);
+        cout<<"Publisher name: "<<line<<endl;
+        getline(view,line);
+        cout<<"Price of book: "<<line<<endl;
+        getline(view,line);
+        cout<<"Quantity of book: "<<line<<endl<<endl;
+        no++;
+    }
+    view.close();
+
+}
+
 void library::delete_book()
 {
     int flag=0;
@@ -353,7 +378,7 @@ int main()
 {
     
   library ob;
-  ob.delete_book();
+  ob.view_booklist();
   //ob.issue_book();
  // ob.modify_book();
 // ob.view_issuedbooks();
