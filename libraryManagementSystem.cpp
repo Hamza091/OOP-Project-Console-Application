@@ -24,6 +24,44 @@ class library
     void search_book();
 };
 
+void library::delete_book()
+{
+    int flag=0;
+    string line;
+    cout<<"Enter name of the book to be deleted: ";
+    cin>>book_name;
+    string file;
+    file="C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt";
+    ifstream del(file);
+    ofstream temp("C://Users//hp//Desktop//OOP project//Console Application//temp.txt");
+    while(getline(del,line))
+    {
+        if(line==book_name)
+        {
+            flag=1;
+            for(auto i=0;i<5;i++)
+            {
+                getline(del,line);
+            }
+        }
+        temp<<line<<endl;
+    }
+    if(flag==0)
+    {
+        cout<<"Book not found"<<endl;
+    }
+    else
+    {
+        temp.close();
+        del.close();
+        remove("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
+        rename("C://Users//hp//Desktop//OOP project//Console Application//temp.txt","C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
+        cout<<"Book has been deleted successfully...."<<endl;
+    }
+
+
+}
+
 void library::add_book()
 {
     ofstream add("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt" , ios::app);
@@ -43,8 +81,6 @@ void library::add_book()
     add<<price<<endl;
     add<<quantity<<endl;
 }
-
-
 
 class librarian
 {
@@ -317,7 +353,7 @@ int main()
 {
     
   library ob;
-  ob.add_book();
+  ob.delete_book();
   //ob.issue_book();
  // ob.modify_book();
 // ob.view_issuedbooks();
