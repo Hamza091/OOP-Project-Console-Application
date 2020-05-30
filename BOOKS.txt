@@ -8,4 +8,13 @@ newhamzaaaa
 newpublisherrrr
 10002
 501
-
+Data_structures
+hamza1
+hamza2
+20
+2
+physics
+hamza3
+hamza4
+200
+5

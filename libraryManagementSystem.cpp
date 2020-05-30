@@ -5,6 +5,47 @@
 
 using namespace std;
 
+class library
+{
+    string book_name;
+    string author_name;
+    string publisher;
+    string price;
+    string quantity;
+    public:
+    //default constructor
+    library()
+    {
+
+    }
+    void add_book();
+    void delete_book();
+    void view_booklist();
+    void search_book();
+};
+
+void library::add_book()
+{
+    ofstream add("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt" , ios::app);
+    cout<<"Enter name of the book: ";
+    cin>>book_name;
+    cout<<"Enter name of the Author: ";
+    cin>>author_name;
+    cout<<"Enter name of the Publisher: ";
+    cin>>publisher;
+    cout<<"Enter price of the Book: ";
+    cin>>price;
+    cout<<"Enter quantity of the Book: ";
+    cin>>quantity;
+    add<<book_name<<endl;
+    add<<author_name<<endl;
+    add<<publisher<<endl;
+    add<<price<<endl;
+    add<<quantity<<endl;
+}
+
+
+
 class librarian
 {
     
@@ -275,8 +316,8 @@ void librarian :: issue_book()
 int main()
 {
     
-  librarian ob;
-  //Hellow I am in library
+  library ob;
+  ob.add_book();
   //ob.issue_book();
  // ob.modify_book();
 // ob.view_issuedbooks();
