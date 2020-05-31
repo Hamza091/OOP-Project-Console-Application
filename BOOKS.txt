@@ -18,3 +18,8 @@ hamza3
 hamza4
 200
 5
+test1book
+test1author
+test1publisher
+test1price
+test1quantity

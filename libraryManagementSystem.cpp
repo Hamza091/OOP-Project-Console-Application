@@ -4,7 +4,6 @@
 #include<string>
 
 using namespace std;
-
 class library
 {
     string book_name;
@@ -20,11 +19,134 @@ class library
     }
     void add_book();
     void delete_book();
-    void view_booklist();
-    void search_book();
+    void  view_booklist();
+    void  search_book();
+
 };
 
-void library::search_book()
+class librarian:public library
+{
+    
+    string student_name;
+    string student_id;
+    string book_name;
+    public:
+    librarian()
+    {
+           
+    }
+    void issue_book();
+    void modify_book();
+    void view_issuedbooks();
+    void search_students(); //Search for students whom book is issued
+};
+void librarian_menu()
+{
+    int choice;
+    librarian obj;
+        cout<<"\t\t****WELCOME LIBRARIAN****"<<endl;
+        cout<<"Select an option to proceed: "<<endl;
+        cout<<"1- Add a book"<<endl;
+        cout<<"2- View booklist"<<endl;
+        cout<<"3- Delete a book"<<endl;
+        cout<<"4- Search for a book"<<endl;
+        cout<<"5- Issue a book"<<endl;
+        cout<<"6- Modify details of a book"<<endl;
+        cout<<"7- View issued books"<<endl;
+        cout<<"8- Search for students whom book is issued"<<endl<<endl;
+        cout<<"Enter your choice: ";
+        cin>>choice;
+        switch(choice)
+        {
+            case 1:
+                obj.add_book();
+                break;
+            case 2:
+                obj.view_booklist();
+                break;
+            case 3:
+                obj.delete_book();
+                break;
+            case 4:
+                obj.search_book();
+                break;
+            case 5:
+                obj.issue_book();
+                break;
+            case 6:
+                obj.modify_book();
+                break;
+            case 7:
+                obj.view_issuedbooks();
+                break;
+            case 8:
+                obj.search_students();
+                break;
+            default:
+                cout<<"Invalid option try again...";
+                librarian_menu();
+        }
+
+}
+void login()
+{
+    int i=0;
+    char ch,st[21],ch1[21]={"pass"};
+    cout<<"\n\t\tEnter Password : ";
+    while(1)
+    {
+    ch=getch();
+    if(ch==13)
+    {
+        st[i]='\0';
+        break;
+    }
+    else if(ch==8&&i>0)
+    {
+        i--;
+        cout<<"\b \b";
+    }
+    else
+    {
+    cout<<"*";
+    st[i]=ch;
+    i++;
+    }
+    }
+    ifstream inf("C://Users//hp//Desktop//OOP project//Console Application//password.txt");
+    inf>>ch1;
+    inf.close();
+    for(i=0;st[i]==ch1[i]&&st[i]!='\0'&&ch1[i]!='\0';i++);
+    if(st[i]=='\0'&&ch1[i]=='\0')
+    {
+        system("cls");
+        librarian_menu();
+    }
+    else
+    {
+        cout<<"\n\n\t\tWrong Password.\n\n\t\ttry again.....\n";
+        getch();
+        system("cls");
+        login();
+    }
+}
+void menu()
+{
+    int choice=0;
+    cout<<"\t\t****WELCOME*****"<<endl<<endl;
+    cout<<"Please select an option: "<<endl;
+    cout<<"1- Librarian"<<endl;
+    cout<<"2- Student"<<endl;
+    cout<<"Enter your choice(1,2): ";
+    cin>>choice;
+    if(choice==1)
+    {
+        login();
+    }
+}
+
+
+void  library:: search_book()
 {
     int flag=0;
     string name;
@@ -138,68 +260,14 @@ void library::add_book()
     add<<publisher<<endl;
     add<<price<<endl;
     add<<quantity<<endl;
+    
 }
 
-class librarian
-{
-    
-    string student_name;
-    string student_id;
-    string book_name;
-    public:
-    librarian()
-    {
-           
-    }
-    void issue_book();
-    void modify_book();
-    void view_issuedbooks();
-    void search_students(); //Search for students whom book is issued
-};
 
-    
-void login()
-{
-    int i=0;
-    char ch,st[21],ch1[21]={"pass"};
-    cout<<"\n\t\tEnter Password : ";
-    while(1)
-    {
-    ch=getch();
-    if(ch==13)
-    {
-        st[i]='\0';
-        break;
-    }
-    else if(ch==8&&i>0)
-    {
-        i--;
-        cout<<"\b \b";
-    }
-    else
-    {
-    cout<<"*";
-    st[i]=ch;
-    i++;
-    }
-    }
-    ifstream inf("C://Users//hp//Desktop//OOP project//Console Application//password.txt");
-    inf>>ch1;
-    inf.close();
-    for(i=0;st[i]==ch1[i]&&st[i]!='\0'&&ch1[i]!='\0';i++);
-    if(st[i]=='\0'&&ch1[i]=='\0')
-    {
-        system("cls");
-        librarian();
-    }
-    else
-    {
-        cout<<"\n\n\t\tWrong Password.\n\n\t\ttry again.....\n";
-        getch();
-        system("cls");
-        login();
-    }
-}
+
+
+
+
 
 void librarian::search_students()
 {
@@ -223,11 +291,12 @@ void librarian::search_students()
             cout<<"Student ID:  "<<line<<endl;
         }
     }
+    search.close();
     if(flag==0)
     {
         cout<<"This book is not issued to any student...."<<endl;
     }
-    search.close();
+    
 
 }
 
@@ -404,16 +473,19 @@ void librarian :: issue_book()
             }
   
 }
+class student:public library
+{
+    public:
+    student()
+    {
 
-    
+    }
+};
+
+
+
 
 int main()
 {
-    
-  library ob;
-  ob.search_book();
-  //ob.issue_book();
- // ob.modify_book();
-// ob.view_issuedbooks();
-//ob.search_students();
+   menu();
 }
