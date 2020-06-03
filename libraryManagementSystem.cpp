@@ -416,6 +416,7 @@ void librarian::modify_book()
 
 void librarian :: issue_book()
 {
+    char c;
     int flag=0;
     int conv;
     string line;
@@ -512,6 +513,10 @@ void librarian :: issue_book()
                 remove("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt"); 
                 rename("C://Users//hp//Desktop//OOP project//Console Application//temp.txt","C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
             }
+    cout<<"Press any key to continue..."<<endl;
+    c=getch();
+    system("cls");
+    librarian_menu();
   
 }
 class student:public library
