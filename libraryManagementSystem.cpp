@@ -2,7 +2,7 @@
 #include<conio.h>
 #include<fstream>
 #include<string>
-
+//-BUG:  IF two book of same name exist in BOOKS.txt then there is problem in modify_book
 using namespace std;
 class library
 {
@@ -53,7 +53,8 @@ void librarian_menu()
         cout<<"5- Issue a book"<<endl;
         cout<<"6- Modify details of a book"<<endl;
         cout<<"7- View issued books"<<endl;
-        cout<<"8- Search for students whom book is issued"<<endl<<endl;
+        cout<<"8- Search for students whom book is issued"<<endl;
+        cout<<"9- Exit"<<endl<<endl;
         cout<<"Enter your choice: ";
         cin>>choice;
         switch(choice)
@@ -81,6 +82,9 @@ void librarian_menu()
                 break;
             case 8:
                 obj.search_students();
+                break;
+            case 9:
+                system("cls");
                 break;
             default:
                 cout<<"Invalid option try again...";
@@ -148,6 +152,7 @@ void menu()
 
 void  library:: search_book()
 {
+    char c;
     int flag=0;
     string name;
     string line;
@@ -176,11 +181,18 @@ void  library:: search_book()
     {
         cout<<"Book not found...";
     }
+
+    cout<<"Press any key to continue..."<<endl;
+    c=getch();
+    system("cls");
+    librarian_menu();
+
     
 }
 
 void library::view_booklist()
 {
+    char c;
     int no=1;
     string line;
     string file;
@@ -201,11 +213,15 @@ void library::view_booklist()
         no++;
     }
     view.close();
-
+    cout<<"Press any key to continue..."<<endl;
+    c=getch();
+    system("cls");
+    librarian_menu();
 }
 
 void library::delete_book()
 {
+    char c;
     int flag=0;
     string line;
     cout<<"Enter name of the book to be deleted: ";
@@ -238,12 +254,17 @@ void library::delete_book()
         rename("C://Users//hp//Desktop//OOP project//Console Application//temp.txt","C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
         cout<<"Book has been deleted successfully...."<<endl;
     }
+    cout<<"Press any key to continue..."<<endl;
+    c=getch();
+    system("cls");
+    librarian_menu();
 
 
 }
 
 void library::add_book()
 {
+    char c;
     ofstream add("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt" , ios::app);
     cout<<"Enter name of the book: ";
     cin>>book_name;
@@ -260,6 +281,11 @@ void library::add_book()
     add<<publisher<<endl;
     add<<price<<endl;
     add<<quantity<<endl;
+    cout<<"Book has been added successfully....."<<endl;
+    cout<<"Press any key to continue..."<<endl;
+    c=getch();
+    system("cls");
+    librarian_menu();
     
 }
 
@@ -275,6 +301,7 @@ void librarian::search_students()
         //This function will show details of book issued to students
         //searching book by name
     
+    char c;
     int flag=0;
     string line;
     ifstream search("C://Users//hp//Desktop//OOP project//Console Application//STUDENTS.txt");
@@ -296,12 +323,17 @@ void librarian::search_students()
     {
         cout<<"This book is not issued to any student...."<<endl;
     }
+     cout<<"Press any key to continue..."<<endl;
+    c=getch();
+    system("cls");
+    librarian_menu();
     
 
 }
 
 void librarian::view_issuedbooks()
 {
+    char c;
     string line;
     ifstream view("C://Users//hp//Desktop//OOP project//Console Application//STUDENTS.txt");
     while(getline(view,line))
@@ -313,6 +345,10 @@ void librarian::view_issuedbooks()
         cout<<"Student ID: "<<line<<endl;
     }   
     view.close();
+     cout<<"Press any key to continue..."<<endl;
+    c=getch();
+    system("cls");
+    librarian_menu();
 
 }
 
@@ -320,6 +356,7 @@ void librarian::view_issuedbooks()
 void librarian::modify_book()
 {
     //this function modifies the details of the book
+    char c;
     string author;
     string publisher;
     string price;
@@ -368,6 +405,10 @@ void librarian::modify_book()
         rename("C://Users//hp//Desktop//OOP project//Console Application//temp.txt","C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
         cout<<"Book has been modified successfully...."<<endl;
     }
+     cout<<"Press any key to continue..."<<endl;
+    c=getch();
+    system("cls");
+    librarian_menu();
 
 }
 
