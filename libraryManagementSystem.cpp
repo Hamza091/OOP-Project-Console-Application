@@ -2,7 +2,8 @@
 #include<conio.h>
 #include<fstream>
 #include<string>
-//-BUG:  IF two book of same name exist in BOOKS.txt then there is problem in modify_book
+            //TO DO
+            //FINAL TESTING
 using namespace std;
 class library
 {
@@ -149,10 +150,19 @@ void menu()
     }
 }
 
+void show_librarianmenu()
+{
+    char c;
+    cout<<"Press any key to continue..."<<endl;
+    c=getch();
+    system("cls");
+    librarian_menu();
+}
+
 
 void  library:: search_book()
 {
-    char c;
+    
     int flag=0;
     string name;
     string line;
@@ -182,17 +192,13 @@ void  library:: search_book()
         cout<<"Book not found...";
     }
 
-    cout<<"Press any key to continue..."<<endl;
-    c=getch();
-    system("cls");
-    librarian_menu();
+    show_librarianmenu();
 
     
 }
 
 void library::view_booklist()
 {
-    char c;
     int no=1;
     string line;
     string file;
@@ -213,15 +219,11 @@ void library::view_booklist()
         no++;
     }
     view.close();
-    cout<<"Press any key to continue..."<<endl;
-    c=getch();
-    system("cls");
-    librarian_menu();
+    show_librarianmenu();
 }
 
 void library::delete_book()
 {
-    char c;
     int flag=0;
     string line;
     cout<<"Enter name of the book to be deleted: ";
@@ -254,20 +256,30 @@ void library::delete_book()
         rename("C://Users//hp//Desktop//OOP project//Console Application//temp.txt","C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
         cout<<"Book has been deleted successfully...."<<endl;
     }
-    cout<<"Press any key to continue..."<<endl;
-    c=getch();
-    system("cls");
-    librarian_menu();
-
+    show_librarianmenu();
 
 }
 
 void library::add_book()
 {
-    char c;
-    ofstream add("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt" , ios::app);
+    int flag=0;
+    string line;
     cout<<"Enter name of the book: ";
     cin>>book_name;
+        //Check if the book is already there
+    ifstream check("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
+    while(getline(check,line))
+    {
+        if(line==book_name)
+        {
+            flag=1;
+            cout<<"Book already exists...."<<endl;
+            check.close();
+            show_librarianmenu();
+        }
+    }
+    if(flag==0)
+    {
     cout<<"Enter name of the Author: ";
     cin>>author_name;
     cout<<"Enter name of the Publisher: ";
@@ -276,16 +288,16 @@ void library::add_book()
     cin>>price;
     cout<<"Enter quantity of the Book: ";
     cin>>quantity;
+    ofstream add("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt" , ios::app);
     add<<book_name<<endl;
     add<<author_name<<endl;
     add<<publisher<<endl;
     add<<price<<endl;
     add<<quantity<<endl;
     cout<<"Book has been added successfully....."<<endl;
-    cout<<"Press any key to continue..."<<endl;
-    c=getch();
-    system("cls");
-    librarian_menu();
+    add.close();
+    show_librarianmenu();
+    }
     
 }
 
@@ -300,8 +312,7 @@ void librarian::search_students()
 
         //This function will show details of book issued to students
         //searching book by name
-    
-    char c;
+
     int flag=0;
     string line;
     ifstream search("C://Users//hp//Desktop//OOP project//Console Application//STUDENTS.txt");
@@ -323,17 +334,12 @@ void librarian::search_students()
     {
         cout<<"This book is not issued to any student...."<<endl;
     }
-     cout<<"Press any key to continue..."<<endl;
-    c=getch();
-    system("cls");
-    librarian_menu();
-    
+    show_librarianmenu();
 
 }
 
 void librarian::view_issuedbooks()
 {
-    char c;
     string line;
     ifstream view("C://Users//hp//Desktop//OOP project//Console Application//STUDENTS.txt");
     while(getline(view,line))
@@ -345,10 +351,7 @@ void librarian::view_issuedbooks()
         cout<<"Student ID: "<<line<<endl;
     }   
     view.close();
-     cout<<"Press any key to continue..."<<endl;
-    c=getch();
-    system("cls");
-    librarian_menu();
+    show_librarianmenu();
 
 }
 
@@ -356,7 +359,7 @@ void librarian::view_issuedbooks()
 void librarian::modify_book()
 {
     //this function modifies the details of the book
-    char c;
+    
     string author;
     string publisher;
     string price;
@@ -396,6 +399,9 @@ void librarian::modify_book()
     if(flag==0)
     {
         cout<<"Book not found"<<endl;
+        temp.close();
+        modify.close();
+        remove("C://Users//hp//Desktop//OOP project//Console Application//temp.txt");
     }
     else
     {
@@ -403,20 +409,17 @@ void librarian::modify_book()
         modify.close();
         remove("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
         rename("C://Users//hp//Desktop//OOP project//Console Application//temp.txt","C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
+        remove("C://Users//hp//Desktop//OOP project//Console Application//temp.txt");
         cout<<"Book has been modified successfully...."<<endl;
     }
-     cout<<"Press any key to continue..."<<endl;
-    c=getch();
-    system("cls");
-    librarian_menu();
-
+     show_librarianmenu();
 }
 
 
 
 void librarian :: issue_book()
 {
-    char c;
+    
     int flag=0;
     int conv;
     string line;
@@ -513,11 +516,7 @@ void librarian :: issue_book()
                 remove("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt"); 
                 rename("C://Users//hp//Desktop//OOP project//Console Application//temp.txt","C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
             }
-    cout<<"Press any key to continue..."<<endl;
-    c=getch();
-    system("cls");
-    librarian_menu();
-  
+        show_librarianmenu();
 }
 class student:public library
 {
