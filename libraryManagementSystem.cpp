@@ -134,19 +134,143 @@ void login()
         login();
     }
 }
+class student
+{
+    public:
+    student()
+    {
+
+    }
+    char student_menu();
+    void view_stbooklist();
+    void search_stbook();
+};
+void student::search_stbook()
+{
+    char c;
+    int flag=0;
+    string name;
+    string line;
+    string file;
+    file="C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt";
+    ifstream search(file);
+    cout<<"Enter name of the book: ";
+    cin>>name;
+    while (getline(search,line))
+    {
+        if(line==name)
+        {
+            flag=1;
+            cout<<"Book name: "<<line<<endl;
+            getline(search,line);
+            cout<<"Author name: "<<line<<endl;
+            getline(search,line);
+            cout<<"Publisher name: "<<line<<endl;
+            getline(search,line);
+            cout<<"Book price: "<<line<<endl;
+            getline(search,line);
+            cout<<"Book quantity: "<<line<<endl;
+        }
+    }
+    if(flag==0)
+    {
+        cout<<"Book not found...";
+    }
+    //view.close();
+    cout<<"Enter any key to continue...";
+    cin>>c;
+    student_menu();
+
+}
+void student::view_stbooklist()
+{
+    char c;
+    int no=1;
+    string line;
+    string file;
+    file="C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt";
+    ifstream view(file);
+    while(getline(view,line))
+    {
+        cout<<"***** BOOK#"<<no<<" *****"<<endl;
+        cout<<"Book name: "<<line<<endl;
+        getline(view,line);
+        cout<<"Author name: "<<line<<endl;
+        getline(view,line);
+        cout<<"Publisher name: "<<line<<endl;
+        getline(view,line);
+        cout<<"Price of book: "<<line<<endl;
+        getline(view,line);
+        cout<<"Quantity of book: "<<line<<endl<<endl;
+        no++;
+    }
+    view.close();
+    cout<<"Enter any key to continue...";
+    cin>>c;
+    student_menu();
+}
+
+char student::student_menu()
+{
+    char choice;
+    cout<<endl<<endl<<"\t\t******Welcome Student******"<<endl<<endl;
+    cout<<"1- View Booklist"<<endl;
+    cout<<"2- Search For a Book"<<endl;
+    cout<<"Enter your choice: ";
+    cin>>choice;
+    if(choice=='1')
+    {
+        return '1';
+    }
+    else if(choice=='2')
+    {
+        return '2';
+    }
+    else
+    {
+        exit(1);
+    }
+    
+}
 void menu()
 {
-    int choice=0;
+    char choice;
     cout<<"\t\t****WELCOME*****"<<endl<<endl;
     cout<<"Please select an option: "<<endl;
     cout<<"1- Librarian"<<endl;
     cout<<"2- Student"<<endl;
     cout<<"Enter your choice(1,2): ";
     cin>>choice;
-    if(choice==1)
+    if(choice=='1')
     {
         login();
     }
+    else if(choice=='2')
+    {
+        char c;
+        student st;
+        c=st.student_menu();
+        if(c=='1')
+        {
+            st.view_stbooklist();
+        }
+        else if(c=='2')
+        {
+            st.search_stbook();
+        }
+        else
+        {
+            st.student_menu();
+        }
+        
+        
+    }
+    else
+    {
+        menu();
+    }
+    
+
 }
 
 void show_librarianmenu()
@@ -518,15 +642,8 @@ void librarian :: issue_book()
             }
         show_librarianmenu();
 }
-class student:public library
-{
-    public:
-    student()
-    {
 
-    }
-    
-};
+
 
 
 
