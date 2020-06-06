@@ -2,8 +2,7 @@
 #include<conio.h>
 #include<fstream>
 #include<string>
-            //TO DO
-            //FINAL TESTING
+           
 using namespace std;
 class library
 {
@@ -43,7 +42,7 @@ class librarian:public library
 };
 void librarian_menu()
 {
-    int choice;
+    char choice;
     librarian obj;
         cout<<"\t\t****WELCOME LIBRARIAN****"<<endl;
         cout<<"Select an option to proceed: "<<endl;
@@ -60,31 +59,31 @@ void librarian_menu()
         cin>>choice;
         switch(choice)
         {
-            case 1:
+            case '1':
                 obj.add_book();
                 break;
-            case 2:
+            case '2':
                 obj.view_booklist();
                 break;
-            case 3:
+            case '3':
                 obj.delete_book();
                 break;
-            case 4:
+            case '4':
                 obj.search_book();
                 break;
-            case 5:
+            case '5':
                 obj.issue_book();
                 break;
-            case 6:
+            case '6':
                 obj.modify_book();
                 break;
-            case 7:
+            case '7':
                 obj.view_issuedbooks();
                 break;
-            case 8:
+            case '8':
                 obj.search_students();
                 break;
-            case 9:
+            case '9':
                 system("cls");
                 break;
             default:
@@ -488,6 +487,7 @@ void librarian :: issue_book()
             student<<student_name<<endl;
             student<<student_id<<endl;
             student.close();
+            cout<<"Book issued successfully....."<<endl;
         }    
 
             if(conv==0)
@@ -525,6 +525,7 @@ class student:public library
     {
 
     }
+    
 };
 
 
