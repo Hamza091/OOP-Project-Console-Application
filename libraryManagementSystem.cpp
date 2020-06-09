@@ -44,18 +44,18 @@ void librarian_menu()
 {
     char choice;
     librarian obj;
-        cout<<"\t\t****WELCOME LIBRARIAN****"<<endl;
-        cout<<"Select an option to proceed: "<<endl;
-        cout<<"1- Add a book"<<endl;
-        cout<<"2- View booklist"<<endl;
-        cout<<"3- Delete a book"<<endl;
-        cout<<"4- Search for a book"<<endl;
-        cout<<"5- Issue a book"<<endl;
-        cout<<"6- Modify details of a book"<<endl;
-        cout<<"7- View issued books"<<endl;
-        cout<<"8- Search for students whom book is issued"<<endl;
-        cout<<"9- Exit"<<endl<<endl;
-        cout<<"Enter your choice: ";
+        cout<<endl<<"\t\t**** WELCOME LIBRARIAN ****"<<endl<<endl;
+        cout<<"\tSelect an option to proceed: "<<endl;
+        cout<<"\t1- Add a book"<<endl;
+        cout<<"\t2- View booklist"<<endl;
+        cout<<"\t3- Delete a book"<<endl;
+        cout<<"\t4- Search for a book"<<endl;
+        cout<<"\t5- Issue a book"<<endl;
+        cout<<"\t6- Modify details of a book"<<endl;
+        cout<<"\t7- View issued books"<<endl;
+        cout<<"\t8- Search for students whom book is issued"<<endl;
+        cout<<"\t9- Exit"<<endl<<endl;
+        cout<<"\tEnter your choice: ";
         cin>>choice;
         switch(choice)
         {
@@ -117,7 +117,7 @@ void login()
     i++;
     }
     }
-    ifstream inf("C://Users//hp//Desktop//OOP project//Console Application//password.txt");
+    ifstream inf("password.txt");
     inf>>ch1;
     inf.close();
     for(i=0;st[i]==ch1[i]&&st[i]!='\0'&&ch1[i]!='\0';i++);
@@ -141,10 +141,39 @@ class student
     {
 
     }
-    char student_menu();
     void view_stbooklist();
     void search_stbook();
 };
+void student_menu()
+{
+    student st;
+    char choice;
+    system("cls");
+    cout<<endl<<endl<<"\t\t******  Welcome Student  ******"<<endl<<endl;
+    cout<<"\t\t1- View Booklist"<<endl;
+    cout<<"\t\t2- Search For a Book"<<endl;
+    cout<<"\t\t3- Exit"<<endl;
+    cout<<"\t\tEnter your choice: ";
+    cin>>choice;
+    if(choice=='1')
+    {
+        
+            st.view_stbooklist();
+    }
+    else if(choice=='2')
+    {
+            st.search_stbook();
+    }
+    else if( choice=='3')
+    {
+        exit(1);
+    }
+    else
+    {
+            system("cls");
+            student_menu();
+    }   
+}
 void student::search_stbook()
 {
     char c;
@@ -152,33 +181,33 @@ void student::search_stbook()
     string name;
     string line;
     string file;
-    file="C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt";
-    ifstream search(file);
-    cout<<"Enter name of the book: ";
+    ifstream search("BOOKS.txt");
+    cout<<"\tEnter name of the book: ";
     cin>>name;
     while (getline(search,line))
     {
         if(line==name)
         {
             flag=1;
-            cout<<"Book name: "<<line<<endl;
+            cout<<"\tBook name: "<<line<<endl;
             getline(search,line);
-            cout<<"Author name: "<<line<<endl;
+            cout<<"\tAuthor name: "<<line<<endl;
             getline(search,line);
-            cout<<"Publisher name: "<<line<<endl;
+            cout<<"\tPublisher name: "<<line<<endl;
             getline(search,line);
-            cout<<"Book price: "<<line<<endl;
+            cout<<"\tBook price: "<<line<<endl;
             getline(search,line);
-            cout<<"Book quantity: "<<line<<endl;
+            cout<<"\tBook quantity: "<<line<<endl;
         }
     }
     if(flag==0)
     {
-        cout<<"Book not found...";
+        cout<<"\tBook not found..."<<endl;
     }
-    //view.close();
-    cout<<"Enter any key to continue...";
-    cin>>c;
+    search.close();
+    cout<<"\tEnter any key to continue...";
+    c=getch();
+    system("cls");
     student_menu();
 
 }
@@ -187,59 +216,36 @@ void student::view_stbooklist()
     char c;
     int no=1;
     string line;
-    string file;
-    file="C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt";
-    ifstream view(file);
+    ifstream view("BOOKS.txt");
     while(getline(view,line))
     {
-        cout<<"***** BOOK#"<<no<<" *****"<<endl;
-        cout<<"Book name: "<<line<<endl;
+        cout<<"\t\t***** BOOK#"<<no<<" *****"<<endl;
+        cout<<"\tBook name: "<<line<<endl;
         getline(view,line);
-        cout<<"Author name: "<<line<<endl;
+        cout<<"\tAuthor name: "<<line<<endl;
         getline(view,line);
-        cout<<"Publisher name: "<<line<<endl;
+        cout<<"\tPublisher name: "<<line<<endl;
         getline(view,line);
-        cout<<"Price of book: "<<line<<endl;
+        cout<<"\tPrice of book: "<<line<<endl;
         getline(view,line);
-        cout<<"Quantity of book: "<<line<<endl<<endl;
+        cout<<"\tQuantity of book: "<<line<<endl<<endl;
         no++;
     }
     view.close();
-    cout<<"Enter any key to continue...";
-    cin>>c;
+    cout<<"\tEnter any key to continue...";
+    c=getch();
+    system("cls");
     student_menu();
 }
 
-char student::student_menu()
-{
-    char choice;
-    cout<<endl<<endl<<"\t\t******Welcome Student******"<<endl<<endl;
-    cout<<"1- View Booklist"<<endl;
-    cout<<"2- Search For a Book"<<endl;
-    cout<<"Enter your choice: ";
-    cin>>choice;
-    if(choice=='1')
-    {
-        return '1';
-    }
-    else if(choice=='2')
-    {
-        return '2';
-    }
-    else
-    {
-        exit(1);
-    }
-    
-}
+
 void menu()
 {
     char choice;
-    cout<<"\t\t****WELCOME*****"<<endl<<endl;
-    cout<<"Please select an option: "<<endl;
-    cout<<"1- Librarian"<<endl;
-    cout<<"2- Student"<<endl;
-    cout<<"Enter your choice(1,2): ";
+    cout<<endl<<endl<<"\t\t***** WELCOME *****"<<endl<<endl;
+    cout<<"\t1- Librarian"<<endl;
+    cout<<"\t2- Student"<<endl;
+    cout<<"\t\tEnter your choice(1,2): ";
     cin>>choice;
     if(choice=='1')
     {
@@ -247,26 +253,11 @@ void menu()
     }
     else if(choice=='2')
     {
-        char c;
-        student st;
-        c=st.student_menu();
-        if(c=='1')
-        {
-            st.view_stbooklist();
-        }
-        else if(c=='2')
-        {
-            st.search_stbook();
-        }
-        else
-        {
-            st.student_menu();
-        }
-        
-        
+        student_menu();
     }
     else
     {
+        system("cls");
         menu();
     }
     
@@ -276,7 +267,7 @@ void menu()
 void show_librarianmenu()
 {
     char c;
-    cout<<"Press any key to continue..."<<endl;
+    cout<<endl<<"\tPress any key to continue..."<<endl;
     c=getch();
     system("cls");
     librarian_menu();
@@ -289,30 +280,28 @@ void  library:: search_book()
     int flag=0;
     string name;
     string line;
-    string file;
-    file="C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt";
-    ifstream search(file);
-    cout<<"Enter name of the book: ";
+    ifstream search("BOOKS.txt");
+    cout<<"\tEnter name of the book: ";
     cin>>name;
     while (getline(search,line))
     {
         if(line==name)
         {
             flag=1;
-            cout<<"Book name: "<<line<<endl;
+            cout<<"\tBook name: "<<line<<endl;
             getline(search,line);
-            cout<<"Author name: "<<line<<endl;
+            cout<<"\tAuthor name: "<<line<<endl;
             getline(search,line);
-            cout<<"Publisher name: "<<line<<endl;
+            cout<<"\tPublisher name: "<<line<<endl;
             getline(search,line);
-            cout<<"Book price: "<<line<<endl;
+            cout<<"\tBook price: "<<line<<endl;
             getline(search,line);
-            cout<<"Book quantity: "<<line<<endl;
+            cout<<"\tBook quantity: "<<line<<endl;
         }
     }
     if(flag==0)
     {
-        cout<<"Book not found...";
+        cout<<"\tBook not found...";
     }
 
     show_librarianmenu();
@@ -324,21 +313,19 @@ void library::view_booklist()
 {
     int no=1;
     string line;
-    string file;
-    file="C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt";
-    ifstream view(file);
+    ifstream view("BOOKS.txt");
     while(getline(view,line))
     {
-        cout<<"***** BOOK#"<<no<<" *****"<<endl;
-        cout<<"Book name: "<<line<<endl;
+        cout<<"\t\t***** BOOK#"<<no<<" *****"<<endl;
+        cout<<"\tBook name: "<<line<<endl;
         getline(view,line);
-        cout<<"Author name: "<<line<<endl;
+        cout<<"\tAuthor name: "<<line<<endl;
         getline(view,line);
-        cout<<"Publisher name: "<<line<<endl;
+        cout<<"\tPublisher name: "<<line<<endl;
         getline(view,line);
-        cout<<"Price of book: "<<line<<endl;
+        cout<<"\tPrice of book: "<<line<<endl;
         getline(view,line);
-        cout<<"Quantity of book: "<<line<<endl<<endl;
+        cout<<"\tQuantity of book: "<<line<<endl<<endl;
         no++;
     }
     view.close();
@@ -349,12 +336,10 @@ void library::delete_book()
 {
     int flag=0;
     string line;
-    cout<<"Enter name of the book to be deleted: ";
+    cout<<"\tEnter name of the book to be deleted: ";
     cin>>book_name;
-    string file;
-    file="C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt";
-    ifstream del(file);
-    ofstream temp("C://Users//hp//Desktop//OOP project//Console Application//temp.txt");
+    ifstream del("BOOKS.txt");
+    ofstream temp("temp.txt");
     while(getline(del,line))
     {
         if(line==book_name)
@@ -369,15 +354,17 @@ void library::delete_book()
     }
     if(flag==0)
     {
-        cout<<"Book not found"<<endl;
+        cout<<"\tBook not found"<<endl;
+        del.close();
+        temp.close();
     }
     else
     {
         temp.close();
         del.close();
-        remove("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
-        rename("C://Users//hp//Desktop//OOP project//Console Application//temp.txt","C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
-        cout<<"Book has been deleted successfully...."<<endl;
+        remove("BOOKS.txt");
+        rename("temp.txt","BOOKS.txt");
+        cout<<"\tBook has been deleted successfully...."<<endl;
     }
     show_librarianmenu();
 
@@ -387,47 +374,43 @@ void library::add_book()
 {
     int flag=0;
     string line;
-    cout<<"Enter name of the book: ";
+    cout<<"\tEnter name of the book: ";
     cin>>book_name;
         //Check if the book is already there
-    ifstream check("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
+    ifstream check("BOOKS.txt");
     while(getline(check,line))
     {
         if(line==book_name)
         {
             flag=1;
-            cout<<"Book already exists...."<<endl;
+            cout<<"\tBook already exists...."<<endl;
             check.close();
             show_librarianmenu();
         }
     }
     if(flag==0)
     {
-    cout<<"Enter name of the Author: ";
+        check.close();
+    cout<<"\tEnter name of the Author: ";
     cin>>author_name;
-    cout<<"Enter name of the Publisher: ";
+    cout<<"\tEnter name of the Publisher: ";
     cin>>publisher;
-    cout<<"Enter price of the Book: ";
+    cout<<"\tEnter price of the Book: ";
     cin>>price;
-    cout<<"Enter quantity of the Book: ";
+    cout<<"\tEnter quantity of the Book: ";
     cin>>quantity;
-    ofstream add("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt" , ios::app);
+    ofstream add("BOOKS.txt" , ios::app);
     add<<book_name<<endl;
     add<<author_name<<endl;
     add<<publisher<<endl;
     add<<price<<endl;
     add<<quantity<<endl;
-    cout<<"Book has been added successfully....."<<endl;
+    cout<<"\tBook has been added successfully....."<<endl;
     add.close();
     show_librarianmenu();
     }
     
 }
-
-
-
-
-
 
 
 void librarian::search_students()
@@ -438,8 +421,8 @@ void librarian::search_students()
 
     int flag=0;
     string line;
-    ifstream search("C://Users//hp//Desktop//OOP project//Console Application//STUDENTS.txt");
-    cout<<"Enter name of book: "<<endl;
+    ifstream search("STUDENTS.txt");
+    cout<<"\tEnter name of book: ";
     cin>>book_name;
     while(getline(search,line))
     {
@@ -447,15 +430,15 @@ void librarian::search_students()
         {
             flag=1;
             getline(search,line);
-            cout<<"Student Name:  "<<line<<endl;
+            cout<<"\tStudent Name:  "<<line<<endl;
             getline(search,line);
-            cout<<"Student ID:  "<<line<<endl;
+            cout<<"\tStudent ID:  "<<line<<endl;
         }
     }
     search.close();
     if(flag==0)
     {
-        cout<<"This book is not issued to any student...."<<endl;
+        cout<<"\tThis book is not issued to any student...."<<endl;
     }
     show_librarianmenu();
 
@@ -464,14 +447,14 @@ void librarian::search_students()
 void librarian::view_issuedbooks()
 {
     string line;
-    ifstream view("C://Users//hp//Desktop//OOP project//Console Application//STUDENTS.txt");
+    ifstream view("STUDENTS.txt");
     while(getline(view,line))
     {
-        cout<<"Book name: "<<line<<endl;
+        cout<<"\tBook name: "<<line<<endl;
         getline(view,line);
-        cout<<"Student name: "<<line<<endl;
+        cout<<"\tStudent name: "<<line<<endl;
         getline(view,line);
-        cout<<"Student ID: "<<line<<endl;
+        cout<<"\tStudent ID: "<<line<<endl;
     }   
     view.close();
     show_librarianmenu();
@@ -489,23 +472,22 @@ void librarian::modify_book()
     string quantity;
     int flag=0;
     string line;
-    string file="C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt";    
-    cout<<"Enter name of the book to be modified: "<<endl;
+     cout<<"\tEnter name of the book to be modified: ";
     cin>>book_name;
-    ifstream modify(file);
-    ofstream temp("C://Users//hp//Desktop//OOP project//Console Application//temp.txt");
+    ifstream modify("BOOKS.txt");
+    ofstream temp("temp.txt");
     while(getline(modify,line))
     {
         if(line==book_name)
         {
             flag=1;
-            cout<<"Enter (modified)name of author: "<<endl;
+            cout<<"\tEnter (modified)name of author: ";
             cin>>author;
-            cout<<"Enter (modified)name of publisher: "<<endl;
+            cout<<"\tEnter (modified)name of publisher: ";
             cin>>publisher;
-            cout<<"Enter (modified)price of book: "<<endl;
+            cout<<"\tEnter (modified)price of book: ";
             cin>>price;
-            cout<<"Enter (modified)quantity of book: "<<endl;
+            cout<<"\tEnter (modified)quantity of book: ";
             cin>>quantity;
             temp<<book_name<<endl;
             temp<<author<<endl;
@@ -521,19 +503,18 @@ void librarian::modify_book()
     }
     if(flag==0)
     {
-        cout<<"Book not found"<<endl;
+        cout<<"\tBook not found"<<endl;
         temp.close();
         modify.close();
-        remove("C://Users//hp//Desktop//OOP project//Console Application//temp.txt");
+        remove("temp.txt");
     }
     else
     {
         temp.close();
         modify.close();
-        remove("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
-        rename("C://Users//hp//Desktop//OOP project//Console Application//temp.txt","C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
-        remove("C://Users//hp//Desktop//OOP project//Console Application//temp.txt");
-        cout<<"Book has been modified successfully...."<<endl;
+        remove("BOOKS.txt");
+        rename("temp.txt","BOOKS.txt");
+        cout<<"\tBook has been modified successfully...."<<endl;
     }
      show_librarianmenu();
 }
@@ -546,13 +527,13 @@ void librarian :: issue_book()
     int flag=0;
     int conv;
     string line;
-    cout<<"Enter name of the book: "<<endl;
+    cout<<"\tEnter name of the book: ";
     cin>>book_name;
-    cout<<"Enter name of student: "<<endl;
+    cout<<"\tEnter name of student: ";
     cin>>student_name;
-    cout<<"Enter ID of student: "<<endl;
+    cout<<"\tEnter ID of student: ";
     cin>>student_id;
-    ifstream readfile("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
+    ifstream readfile("BOOKS.txt");
     
     while(getline(readfile,line))
     {
@@ -570,7 +551,7 @@ void librarian :: issue_book()
     }  
         if(flag==0)
         {
-            cout<<"Book not found"<<endl;
+            cout<<"\tBook not found"<<endl;
         }
         else
         {
@@ -580,8 +561,8 @@ void librarian :: issue_book()
             //ifstream readagain("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt"); //changing quantity of books after issuing a book            
             string strReplace = line;
             string strNew =to_string(conv);
-            ifstream filein("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt"); //File to read from
-            ofstream fileout("C://Users//hp//Desktop//OOP project//Console Application//fileout.txt"); //Temporary file
+            ifstream filein("BOOKS.txt"); //File to read from
+            ofstream fileout("fileout.txt"); //Temporary file
             if(!filein || !fileout)
             {
                 cout << "Error opening files!" << endl;
@@ -601,25 +582,25 @@ void librarian :: issue_book()
             }
             filein.close();
             fileout.close();
-            remove("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt"); 
-            rename("C://Users//hp//Desktop//OOP project//Console Application//fileout.txt","C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");             
+            remove("BOOKS.txt"); 
+            rename("fileout.txt","BOOKS.txt");             
             
             //Writing the name and ID of the student whom book is issued in STUDENTS.txt 
 
-            ofstream student("C://Users//hp//Desktop//OOP project//Console Application//STUDENTS.txt",ios::app);
+            ofstream student("STUDENTS.txt",ios::app);
             student<<book_name<<endl;
             student<<student_name<<endl;
             student<<student_id<<endl;
             student.close();
-            cout<<"Book issued successfully....."<<endl;
+            cout<<"\tBook issued successfully....."<<endl;
         }    
 
             if(conv==0)
             {
                 //IF quantity of book becomes zero after issuing last book then the book should be deleted from data
                 string line;
-                ifstream old("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
-                ofstream newfile("C://Users//hp//Desktop//OOP project//Console Application//temp.txt",ios::app);
+                ifstream old("BOOKS.txt");
+                ofstream newfile("temp.txt",ios::app);
                 while(getline(old,line))
                 {
                     if(line==book_name)
@@ -637,14 +618,11 @@ void librarian :: issue_book()
                 }
                 old.close();
                 newfile.close();
-                remove("C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt"); 
-                rename("C://Users//hp//Desktop//OOP project//Console Application//temp.txt","C://Users//hp//Desktop//OOP project//Console Application//BOOKS.txt");
+                remove("BOOKS.txt"); 
+                rename("temp.txt","BOOKS.txt");
             }
         show_librarianmenu();
 }
-
-
-
 
 
 
