@@ -1,8 +1,7 @@
-
 Back_to_the_Batcave
 Adam_West
 Berkley_Books
-200
+199
 100
 A_Place_So_Foreign
 Cory_Doctorow
@@ -13,7 +12,7 @@ Four_Walls_Eight_Windows
 Charlotte_Fiell
 Taschen
 50
-200
+199
 Green_Illusion
 Ozzie_Zehner
 University_Of_Nebraska_Press
@@ -24,4 +23,3 @@ AlanM
 RoutM
 20
 20
-

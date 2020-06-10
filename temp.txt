@@ -1,11 +1,10 @@
-
 Back_to_the_Batcave
 Adam_West
 Berkley_Books
-200
-100
-A_Place_So_Foreign
-Cory_Doctorow
+modifiedauthor
+modifiedpublisher
+4
+4
 Four_Walls_Eight_Windows
 300
 50
